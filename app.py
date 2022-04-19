@@ -129,7 +129,7 @@ def send_email(instanceId, alarmName):
     #mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
     mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
         instanceId + " for Alarm" + alarmName + \
-            "<a href="https://www.google.com/">click here</a>" 
+            "<a href=\"https://www.google.com/\" >click here</a>" 
 
     mail_content = mail_content + workplace_url
     # Setup the MIME
