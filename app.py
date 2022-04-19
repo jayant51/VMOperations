@@ -21,6 +21,20 @@ def apiCheck():
 
 @app.route('/checkVMStatus')
 @app.route('/verifyVMStatus')
+def vmStatus():
+    try:
+        command = "nc -w 5 -z ***REMOVED*** *****"
+        response = os.system(command)
+        retval = "False"
+        if response == 0:
+            retval = "UP"
+        else:
+            retVal = "DOWN"
+    except Exception as ex:
+        print("Error: ping exception = ", ex)
+    return jsonify({"retval" : retval}) 
+
+
 @app.route('/isVMUp')
 def isvmup():
     try:
