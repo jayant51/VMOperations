@@ -32,8 +32,8 @@ def vmStatus():
             retVal = "DOWN"
     except Exception as ex:
         print("Error: ping exception = ", ex)
-    # return jsonify({"retval" : retval})
-    return retval
+    return jsonify({"retval": retval})
+    # return retval
 
 
 @app.route('/isVMUp')
@@ -48,8 +48,8 @@ def isvmup():
             retVal = "False"
     except Exception as ex:
         print("Error: ping exception = ", ex)
-    # return jsonify({"retval" : retval})
-    return retval
+    return jsonify({"retval": retval})
+    # return retval
 
 
 @app.route('/isVMDown')
@@ -64,8 +64,8 @@ def isvmdown():
             retVal = "True"
     except Exception as ex:
         print("Error: ping exception = ", ex)
-    # return jsonify({"retval" : retval})
-    return retval
+    return jsonify({"retval": retval})
+    # return retval
 
 
 @app.route('/df')
