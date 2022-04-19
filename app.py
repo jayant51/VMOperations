@@ -113,7 +113,7 @@ def post_msg():
     alarmName = data.get("alarmName")
     slog = send_email(instanceId, alarmName)
 
-    log = log + " " + slog + "  message : Completed Send Email"
+    #log = log + " " + slog + "  message : Completed Send Email"
     return jsonify({log: log})
 
 
