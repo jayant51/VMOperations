@@ -117,15 +117,18 @@ def post_msg():
     return log + " " + slog + "  message : Completed Send Email"
     
 
-
-def send_email(toaddrs, email_subj, email_msg):
+def send_email(instanceId, alarmName):
+#def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
+
+    workplace_url = "https://cpd-cp4ba.itzroks-6620022x67-2q1yiu-4b4a324f027aea19c5cbc0c3275c4656-0000.us-south.containers.appdomain.cloud/bas/Workplace"
     sender_address = 'testibmvz@gmail.com'
     sender_passcode = '***REMOVED***'
     receiver_address = 'testibmvz@gmail.com'
 
-    mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
-
+    #mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
+    mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + instanceId + " for Alarm" + alarmName
+    mail_content = mail_content + workplace_url
     # Setup the MIME
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -134,8 +137,8 @@ def send_email(toaddrs, email_subj, email_msg):
     fromaddr = "some.body@ibm.com"
     #toaddrs  = ["some.body@ibm.com;some.body@ibm.com"]
 
-    msg = MIMEText(email_msg)
-    msg['Subject'] = email_subj
+   # msg = MIMEText(email_msg)
+    #msg['Subject'] = "Approval Tasks Assigned"
 
     try:
         #server = smtplib.SMTP( ============, 25)
@@ -143,7 +146,7 @@ def send_email(toaddrs, email_subj, email_msg):
         message['From'] = sender_address
         message['To'] = receiver_address
         # The subject line
-        message['Subject'] = 'WfPs Test Email to verify Notifications are working !!!.'
+        message['Subject'] = '"Approval Tasks Assigned" !!!.'
 
         message.attach(MIMEText(mail_content, 'plain'))
         session = smtplib.SMTP('smtp.gmail.com', 587)
@@ -160,7 +163,10 @@ def send_email(toaddrs, email_subj, email_msg):
     except Exception as ex:
         print("Error: unable to send email", ex)
         log = log + "Error: unable to send email" + str(ex)
-    return log
+
+
+    return jsonify({log : log})
+    #return log
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
 # getSSHClient : Obtains SSHClient to execute command over SSH
