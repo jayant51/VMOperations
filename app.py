@@ -79,7 +79,8 @@ def restartVM():
     s = sshclnt.get_transport().open_session()
     paramiko.agent.AgentRequestHandler(s)
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
-    return "Message : Sent Restart remote server : ***REMOVED***!"
+    #return "Message : Sent Restart remote server : ***REMOVED***!"
+    return jsonify({"Message": "Sent Restart remote server : ***REMOVED***!"})
 
 
 @app.route('/ping')
