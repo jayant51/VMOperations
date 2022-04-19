@@ -109,7 +109,7 @@ def post_msg():
     log = "in postmsg \n"
     data = request.get_json()
 
-    instanceId, alarmName = data.get("instanceId")
+    instanceId = data.get("instanceId")
     alarmName = data.get("alarmName")
     slog = send_email(instanceId, alarmName)
 
