@@ -155,11 +155,9 @@ def send_email(instanceId, alarmName):
         email_msg = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
             instanceId + " for Alarm" + alarmName
 
-        email_body = """<pre> 
-        <a href="https://www.google.com/">alarmName</a>
-        Thanks,
-        XYZ Team.
-        </pre>"""
+        email_body = " <a href=\"https://www.google.com/\">"+alarmName+"</a> "
+
+        
 
         email_msg = email_msg + email_body
         #message.attach(MIMEText(mail_content, 'plain'))
