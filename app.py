@@ -146,15 +146,28 @@ def send_email(instanceId, alarmName):
 
     try:
         #server = smtplib.SMTP( ============, 25)
+        #message = MIMEText(u'<a href="www.google.com">click here</a>','html')
         message = MIMEMultipart()
         message['From'] = sender_address
         message['To'] = receiver_address
         # The subject line
         message['Subject'] = '"Approval Tasks Assigned" !!!.'
 
-        message = MIMEText(u'<a href="www.google.com">abc</a>','html')
-
+        
+        email_body = """<pre> 
+        Congratulations! We've successfully created account.
+        Go to the page: <a href="https://www.google.com/">click here</a>
+        Thanks,
+        XYZ Team.
+        </pre>"""
         #message.attach(MIMEText(mail_content, 'plain'))
+        message = MIMEText(email_body ,'html')
+
+        message['From'] = sender_address
+        message['To'] = receiver_address
+        # The subject line
+        message['Subject'] = '"Approval Tasks Assigned" !!!.'
+
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()  # enable security
         # login with mail_id and password
