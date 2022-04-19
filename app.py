@@ -70,7 +70,7 @@ def isvmdown():
 
 @app.route('/df')
 def dfExec():
-    #return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
+    # return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
     return jsonify({"Message": "Sent SSH df -H to remote server : ***REMOVED***!"})
 
 
@@ -80,7 +80,7 @@ def restartVM():
     s = sshclnt.get_transport().open_session()
     paramiko.agent.AgentRequestHandler(s)
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
-    #return "Message : Sent Restart remote server : ***REMOVED***!"
+    # return "Message : Sent Restart remote server : ***REMOVED***!"
     return jsonify({"Message": "Sent Restart remote server : ***REMOVED***!"})
 
 
@@ -115,10 +115,10 @@ def post_msg():
     slog = send_email(toaddrs, email_subj, email_msg)
 
     return log + " " + slog + "  message : Completed Send Email"
-    
+
 
 def send_email(instanceId, alarmName):
-#def send_email(toaddrs, email_subj, email_msg):
+    # def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
 
     workplace_url = "https://cpd-cp4ba.itzroks-6620022x67-2q1yiu-4b4a324f027aea19c5cbc0c3275c4656-0000.us-south.containers.appdomain.cloud/bas/Workplace"
@@ -127,7 +127,8 @@ def send_email(instanceId, alarmName):
     receiver_address = 'testibmvz@gmail.com'
 
     #mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
-    mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + instanceId + " for Alarm" + alarmName
+    mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
+        instanceId + " for Alarm" + alarmName
     mail_content = mail_content + workplace_url
     # Setup the MIME
     message = MIMEMultipart()
@@ -164,9 +165,8 @@ def send_email(instanceId, alarmName):
         print("Error: unable to send email", ex)
         log = log + "Error: unable to send email" + str(ex)
 
-
-    return jsonify({log : log})
-    #return log
+    return jsonify({log: log})
+    # return log
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
 # getSSHClient : Obtains SSHClient to execute command over SSH
