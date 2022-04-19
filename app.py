@@ -52,12 +52,17 @@ def isvmup():
 
 @app.route('/isVMDown')
 def isvmdown():
-    if isvmup() == "True":
-        #return "False"
-        return jsonify({"retval" : "False"})    
-    else:
-        #return "True"
-        return jsonify({"retval" : "True"})    
+    try:
+        command = "nc -w 5 -z ***REMOVED*** *****"
+        response = os.system(command)
+        retval = "False"
+        if response == 0:
+            retval = "False"
+        else:
+            retVal = "True"
+    except Exception as ex:
+        print("Error: ping exception = ", ex)
+    return jsonify({"retval" : retval})     
 
 @app.route('/df')
 def dfExec():
