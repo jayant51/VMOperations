@@ -153,11 +153,11 @@ def send_email(instanceId, alarmName):
         # The subject line
         message['Subject'] = '"Approval Tasks Assigned" !!!.'
         email_msg = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
-            instanceId + " for Alarm" + alarmName
+            instanceId + " for Alarm" 
 
-        email_body = " <a href=\"https://www.google.com/\">"+alarmName+"</a> "
+        #email_body = " <a href=\"https://www.google.com/\">"+alarmName+"</a> "
 
-        
+        email_body = " <a href=" + workplace_url +  ">"+alarmName+"</a> "
 
         email_msg = email_msg + email_body
         #message.attach(MIMEText(mail_content, 'plain'))
