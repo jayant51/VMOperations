@@ -133,6 +133,7 @@ def send_email(instanceId, alarmName):
 
     mail_content = mail_content + workplace_url
     # Setup the MIME
+
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
@@ -151,7 +152,9 @@ def send_email(instanceId, alarmName):
         # The subject line
         message['Subject'] = '"Approval Tasks Assigned" !!!.'
 
-        message.attach(MIMEText(mail_content, 'plain'))
+        message = MIMEText(u'<a href="www.google.com">abc</a>','html')
+
+        #message.attach(MIMEText(mail_content, 'plain'))
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()  # enable security
         # login with mail_id and password
