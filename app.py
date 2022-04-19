@@ -109,12 +109,12 @@ def post_msg():
     log = "in postmsg \n"
     data = request.get_json()
 
-    toaddrs = data.get("emailid")
-    email_msg = data.get("msg")
-    email_subj = data.get("subject")
-    slog = send_email(toaddrs, email_subj, email_msg)
+    instanceId, alarmName = data.get("instanceId, alarmName")
+    alarmName = data.get("alarmName")
+    slog = send_email(instanceId, alarmName)
 
-    return log + " " + slog + "  message : Completed Send Email"
+    log = log + " " + slog + "  message : Completed Send Email"
+    return jsonify({log: log})
 
 
 def send_email(instanceId, alarmName):
