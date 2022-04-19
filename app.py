@@ -70,7 +70,8 @@ def isvmdown():
 
 @app.route('/df')
 def dfExec():
-    return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
+    #return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
+    return jsonify({"Message": "Sent SSH df -H to remote server : ***REMOVED***!"})
 
 
 @app.route('/restart')
@@ -114,6 +115,7 @@ def post_msg():
     slog = send_email(toaddrs, email_subj, email_msg)
 
     return log + " " + slog + "  message : Completed Send Email"
+    
 
 
 def send_email(toaddrs, email_subj, email_msg):
