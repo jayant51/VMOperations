@@ -1,3 +1,26 @@
+'''------------------------------------------------------------------
+© Copyright IBM Corporation 
+Author : Jayant Kulkarni
+Creation Date : April 2022
+
+Purpose: MVP For Client 
+Client : Verizon
+MVP : Closed Loop Automation
+
+Description : 
+As part of this MVP, following webservices are created and are integrated with WfPs workflow.
+VM Operations-  
+    WfPs workflow receives Alerts from NOI, and based on alert type it checks VM status and attempts to restart VM.
+    After calling VM restart API, workflow verifies the VM status
+Email Notifications-
+    This service sends notifications to gmail client using passcode obtained from gmail account to enable this API to sen notifications
+
+Limitations-
+Destination hosts and RedHAt clusters are reserved instances from TechZone and are subject to expire.
+current host ***REMOVED***:*****
+------------------------------------------------------------------'''
+
+
 import os
 import sys
 import select
@@ -9,9 +32,11 @@ import subprocess
 from flask import Flask, jsonify, request
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from waitress import serve
+
 
 app = Flask(__name__)
+vmhost = ======= "
+vmport = *****
 
 
 @app.route('/')
@@ -23,7 +48,7 @@ def apiCheck():
 @app.route('/verifyVMStatus')
 def vmStatus():
     try:
-        command = "nc -w 5 -z ***REMOVED*** *****"
+        command = "nc -w 5 -z " + vmhost + vmport
         response = os.system(command)
         retval = "False"
         if response == 0:
@@ -39,7 +64,7 @@ def vmStatus():
 @app.route('/isVMUp')
 def isvmup():
     try:
-        command = "nc -w 5 -z ***REMOVED*** *****"
+        command = "nc -w 5 -z " + vmhost + vmport
         response = os.system(command)
         retval = "False"
         if response == 0:
@@ -55,7 +80,7 @@ def isvmup():
 @app.route('/isVMDown')
 def isvmdown():
     try:
-        command = "nc -w 5 -z ***REMOVED*** *****"
+        command = "nc -w 5 -z " + vmhost + vmport
         response = os.system(command)
         retval = "False"
         if response == 0:
@@ -113,7 +138,7 @@ def post_msg():
     alarmName = data.get("alarmName")
     slog = send_email(instanceId, alarmName)
 
-    #log = log + " " + slog + "  message : Completed Send Email"
+    log = log + " " + slog + "  message : Completed Send Email"
     return jsonify({log: log})
 
 
@@ -153,11 +178,11 @@ def send_email(instanceId, alarmName):
         # The subject line
         message['Subject'] = '"Approval Tasks Assigned" !!!.'
         email_msg = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
-            instanceId + " for Alarm" 
+            instanceId + " for Alarm"
 
         #email_body = " <a href=\"https://www.google.com/\">"+alarmName+"</a> "
 
-        email_body = " <a href=" + workplace_url +  ">"+alarmName+"</a> "
+        email_body = " <a href=" + workplace_url + ">"+alarmName+"</a> "
 
         email_msg = email_msg + email_body
         #message.attach(MIMEText(mail_content, 'plain'))
@@ -174,17 +199,16 @@ def send_email(instanceId, alarmName):
         session.login(sender_address, sender_passcode)
         session.set_debuglevel(1)
         text = message.as_string()
-        log = "calling send email"
+
         session.sendmail(sender_address, receiver_address, text)
-        log = log + "\n done send email"
+
         session.quit()
-        log = log + "\n Successfully sent email"
+
     except Exception as ex:
         print("Error: unable to send email", ex)
-        log = log + "Error: unable to send email" + str(ex)
 
-    return jsonify({log: log})
-    # return log
+    return jsonify({"message": "existing send_email"})
+
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
 # getSSHClient : Obtains SSHClient to execute command over SSH
