@@ -136,21 +136,21 @@ def post_msg():
 
     instanceId = data.get("instanceId")
     alarmName = data.get("alarmName")
-    sender_address = data.get("sender_address")
-    slog = send_email(instanceId, alarmName, sender_address)
+    receiver_address = data.get("receiver_address")
+    slog = send_email(instanceId, alarmName, receiver_address)
 
     #log = log + " " + slog + "  message : Completed Send Email"
     return jsonify({log: log})
 
 
-def send_email(instanceId, alarmName, sender_address):
+def send_email(instanceId, alarmName, receiver_address):
     # def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
 
     workplace_url = "https://cpd-cp4ba.itzroks-6620022x67-2q1yiu-4b4a324f027aea19c5cbc0c3275c4656-0000.us-south.containers.appdomain.cloud/bas/Workplace"
-    #sender_address = 'testibmvz@gmail.com'
+    sender_address = 'testibmvz@gmail.com'
     sender_passcode = '***REMOVED***'
-    receiver_address = 'testibmvz@gmail.com'
+    #receiver_address = 'testibmvz@gmail.com'
 
     #mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
     mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
