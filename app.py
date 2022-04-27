@@ -32,7 +32,7 @@ import subprocess
 from flask import Flask, jsonify, request
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
+from waitress import serve
 
 app = Flask(__name__)
 vmhost = ======= "
@@ -136,7 +136,7 @@ def post_msg():
 
     instanceId = data.get("instanceId")
     alarmName = data.get("alarmName")
-    sender_address = = data.get("sender_address")
+    sender_address = data.get("sender_address")
     slog = send_email(instanceId, alarmName, sender_address)
 
     log = log + " " + slog + "  message : Completed Send Email"
