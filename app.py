@@ -35,8 +35,8 @@ from email.mime.text import MIMEText
 from waitress import serve
 
 app = Flask(__name__)
-vmhost = ======= "
-vmport = *****
+vmhost = "***REMOVED*** "
+vmport = "*****"
 
 
 @app.route('/')
@@ -165,7 +165,7 @@ def send_email(instanceId, alarmName, receiver_address):
     message['To'] = receiver_address
 
     fromaddr = "some.body@ibm.com"
-    #toaddrs  = ["some.body@ibm.com;some.body@ibm.com"]
+    #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
 
    # msg = MIMEText(email_msg)
     #msg['Subject'] = "Approval Tasks Assigned"
@@ -221,9 +221,9 @@ class utils():
     def getSSHClient():
         sshclnt = paramiko.SSHClient()
         sshclnt.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        #sshclnt.connect(=======", port=****, username=******, password=********)
-        #sshclnt.connect(=======", port=****, username=******, password=============)
-        sshclnt.connect(=======",
+        #sshclnt.connect("***REMOVED***", port=****, username=******, password=********)
+        #sshclnt.connect("***REMOVED***", port=****, username=******, password=============)
+        sshclnt.connect("***REMOVED***",
                         port=*****, username=******, password=============)
         return sshclnt
 

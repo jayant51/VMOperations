@@ -1,0 +1,46 @@
+swagger: "2.0"
+info:
+  description: "EMAILService"
+  version: "1.0.0"
+  title: "WorkFlow Integration"
+produces:
+  - application/xml
+  - application/json
+  - text/html
+host: "vm-operations-openshift.itzroks-6620022x67-3hr0g7-6ccd7f378ae819553d37d5f2ee142bd6-0000.us-south.containers.appdomain.cloud"
+schemes:
+- "http"
+paths:
+  /postmsg:
+    post:
+      summary: SendEmail Notification.
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: body
+          name: emailcontents
+          description: Email Notification Contents.
+          schema:
+            type: object
+            properties:
+              instanceId:
+                type: string
+              alarmName:
+                type: string
+              receiver_address:
+                type: string
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            type: string
+        "405":
+          description: "Invalid input"
+          schema:
+            type: string
+        "200":
+          description: "OK"
+          schema:
+            type: string
