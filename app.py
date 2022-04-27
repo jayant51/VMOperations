@@ -142,12 +142,12 @@ def post_msg():
     return jsonify({log: log})
 
 
-def send_email(instanceId, alarmName):
+def send_email(instanceId, alarmName, sender_address):
     # def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
 
     workplace_url = "https://cpd-cp4ba.itzroks-6620022x67-2q1yiu-4b4a324f027aea19c5cbc0c3275c4656-0000.us-south.containers.appdomain.cloud/bas/Workplace"
-    sender_address = 'testibmvz@gmail.com'
+    #sender_address = 'testibmvz@gmail.com'
     sender_passcode = '***REMOVED***'
     receiver_address = 'testibmvz@gmail.com'
 
