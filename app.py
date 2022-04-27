@@ -140,7 +140,7 @@ def post_msg():
     slog = send_email(instanceId, alarmName, receiver_address)
 
     #log = log + " " + slog + "  message : Completed Send Email"
-    return jsonify({log: log})
+    return jsonify({"log": "In send email notification"})
 
 
 def send_email(instanceId, alarmName, receiver_address):
