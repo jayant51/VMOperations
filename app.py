@@ -17,7 +17,7 @@ Email Notifications-
 
 Limitations-
 Destination hosts and RedHAt clusters are reserved instances from TechZone and are subject to expire.
-current host ***REMOVED***:*****
+current host services-uscentral.skytap.com:16075
 ------------------------------------------------------------------'''
 
 
@@ -35,8 +35,8 @@ from email.mime.text import MIMEText
 from waitress import serve
 
 app = Flask(__name__)
-vmhost = "***REMOVED*** "
-vmport = "*****"
+vmhost = "***.com"
+vmport = "****"
 
 
 @app.route('/')
@@ -95,8 +95,8 @@ def isvmdown():
 
 @app.route('/df')
 def dfExec():
-    # return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
-    return jsonify({"Message": "Sent SSH df -H to remote server : ***REMOVED***!"})
+    # return "Message : Sent SSH df -H to remote server : ****.com!"
+    return jsonify({"Message": "Sent SSH df -H to remote server : ***.com!"})
 
 
 @app.route('/restart')
@@ -105,8 +105,8 @@ def restartVM():
     s = sshclnt.get_transport().open_session()
     paramiko.agent.AgentRequestHandler(s)
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
-    # return "Message : Sent Restart remote server : ***REMOVED***!"
-    return jsonify({"Message": "Sent Restart remote server : ***REMOVED***!"})
+    # return "Message : Sent Restart remote server : ***.com!"
+    return jsonify({"Message": "Sent Restart remote server : ***.com!"})
 
 
 @app.route('/ping')
@@ -147,10 +147,10 @@ def send_email(instanceId, alarmName, receiver_address):
     # def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
 
-    workplace_url = "https://cpd-cp4ba.itzroks-6620022x67-2q1yiu-4b4a324f027aea19c5cbc0c3275c4656-0000.us-south.containers.appdomain.cloud/bas/Workplace"
-    sender_address = 'testibmvz@gmail.com'
-    sender_passcode = '***REMOVED***'
-    #receiver_address = 'testibmvz@gmail.com'
+    workplace_url = "*******"
+    sender_address = '******.@gmail.com'
+    sender_passcode = '**********'
+    #receiver_address = '********@gmail.com'
 
     #mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
     mail_content = "You have a task assigned awaiting approval. Please approve  Closed Loop Automation:" + \
@@ -165,13 +165,13 @@ def send_email(instanceId, alarmName, receiver_address):
     message['To'] = receiver_address
 
     fromaddr = "some.body@ibm.com"
-    #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
+    #toaddrs  = ["some.body@ibm.com;some.body@ibm.com"]
 
    # msg = MIMEText(email_msg)
     #msg['Subject'] = "Approval Tasks Assigned"
 
     try:
-        #server = smtplib.SMTP( ============, 25)
+        #server = smtplib.SMTP('*****', **)
         #message = MIMEText(u'<a href="www.google.com">click here</a>','html')
         message = MIMEMultipart()
         message['From'] = sender_address
@@ -194,7 +194,7 @@ def send_email(instanceId, alarmName, receiver_address):
         # The subject line
         message['Subject'] = '"Approval Tasks Assigned" !!!.'
 
-        session = smtplib.SMTP('smtp.gmail.com', 587)
+        session = smtplib.SMTP('****.com', ***)
         session.starttls()  # enable security
         # login with mail_id and password
         session.login(sender_address, sender_passcode)
@@ -221,10 +221,10 @@ class utils():
     def getSSHClient():
         sshclnt = paramiko.SSHClient()
         sshclnt.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        #sshclnt.connect("***REMOVED***", port=****, username=******, password=********)
-        #sshclnt.connect("***REMOVED***", port=****, username=******, password=============)
-        sshclnt.connect("***REMOVED***",
-                        port=*****, username=******, password=============)
+        #sshclnt.connect("*****.com", port=*****, username="****", password="******")
+        #sshclnt.connect("*****.com", port=*****, username="****", password="******")
+        sshclnt.connect("*****.com",
+                        port=****, username="****", password="****")
         return sshclnt
 
     def execCommand(command):
